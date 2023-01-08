@@ -1,4 +1,4 @@
-import './App.scss';
+import './styles/App.scss';
 
 import DescriptionComponent from './DescriptionComponent';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';

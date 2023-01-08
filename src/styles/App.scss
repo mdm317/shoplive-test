@@ -1,0 +1,186 @@
+@import './utils.scss';
+
+body {
+  background-color: #f9f9f9;
+}
+
+.App {
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  header {
+    background-color: gray;
+    color: white;
+    height:40px;
+    width:100%;
+    padding-left: 10px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    .head-text{
+      max-width: $desktop-max-width;
+      width:100%
+    }
+  }
+  .row{
+    max-width: $desktop-max-width;
+    width:100%
+  }
+
+  input {
+    padding: 4px 8px;
+    margin: 2px;
+  }
+  .wrap-items{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 10px;
+    @include mobile{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+    }
+  }
+  .item-row {
+    margin: 16px 0;
+    border-radius: 12px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    height:300px;
+    display:flex;
+    overflow: hidden;
+    flex-direction: column-reverse;
+
+
+    @include mobile{
+      width:80%;
+      .thumb{
+        position: absolute;
+        width:100%;
+        height: 100%;
+      }
+      .like{
+        padding:7px;
+        background-color: rgba(0, 0, 0, 0.3);
+        color:white;
+        position: absolute !important;
+        top:20px;
+        right:20px;
+        border-radius: 5px;
+      }
+      .buttons{
+        position: relative;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        display: flex;
+        margin-left: auto;
+      }
+      .text-box{
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 20px;
+        .title{
+          z-index: 10;
+          position: relative;
+          color:white;
+          font-size: 30px;
+          font-weight: bold;
+        }
+        .date{
+          position: relative;
+          font-size: 15px;
+          color:#a9a9a9;
+        }
+      }
+    }
+    @include tablet{ 
+      width:40%;
+      border-radius: 40px;
+      .thumb{
+        position: absolute;
+        width:100%;
+        height: 100%;
+      }
+      .like{
+        padding:7px;
+        background-color: rgba(0, 0, 0, 0.3);
+        color:white;
+        position: absolute !important;
+        top:20px;
+        right:20px;
+        border-radius: 5px;
+      }
+      .buttons{
+        position: relative;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        display: flex;
+        margin-left: auto;
+      }
+      .text-box{
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 20px;
+        .title{
+          z-index: 10;
+          position: relative;
+          color:white;
+          font-size: 20px;
+          line-height: 21px;
+          font-weight: bold;
+        }
+        .date{
+          position: relative;
+          font-size: 15px;
+          color:#a9a9a9;
+        }
+      }
+
+    }
+    @include desktop{ 
+      width:100%;
+      height:200px;
+      max-width: $desktop-max-width;
+      flex-direction: row;
+      .thumb{
+        position: relative;
+        width: 250px;
+        height: 200px;
+      }
+      .text-box{
+        height: 200px;
+        padding-top: 35px;
+        margin-left: 10px;
+        .like{
+          color:#a9a9a9;
+        }
+        .title{
+          font-weight: 700;
+          font-size: 23px;
+          width: 700px;
+        }
+        .date{
+          color:#a9a9a9;
+        }
+        div{
+          margin-top:10px
+        }
+      }
+      .buttons{
+        position: absolute;
+        top:85px;
+        right:10px;
+      }
+    }
+      
+     
+
+  }
+}
