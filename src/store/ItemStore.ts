@@ -7,6 +7,11 @@ interface ItemsState {
   init: () => void;
   addItem: (prop: AddItemProp) => void;
   deleteItem: (id: number) => void;
+  editItem: (
+    prop: AddItemProp & {
+      id: number;
+    }
+  ) => void;
 }
 
 export const useItemsStore = create<ItemsState>()(set => ({
@@ -45,6 +50,25 @@ export const useItemsStore = create<ItemsState>()(set => ({
       if (idx !== -1) {
         const newItems = [...state.items];
         newItems.splice(idx, 1);
+        localStorage.setItem('dummy', JSON.stringify(newItems));
+        return { items: newItems };
+      }
+      return { items: state.items };
+    }),
+  editItem: prop =>
+    set(state => {
+      const { title, imageUrl, likeCount, id: editId } = prop;
+
+      const idx = state.items.findIndex(({ id }) => id === editId);
+      if (idx !== -1) {
+        const preitem = state.items[idx];
+        const newItems = [...state.items];
+        newItems.splice(idx, 1, {
+          ...preitem,
+          title,
+          imageUrl,
+          likeCount: Number(likeCount),
+        });
         localStorage.setItem('dummy', JSON.stringify(newItems));
         return { items: newItems };
       }

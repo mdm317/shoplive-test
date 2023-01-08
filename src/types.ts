@@ -11,3 +11,4 @@ export type AddItemProp = {
   imageUrl: string;
   likeCount: string;
 };
+export type EditItemProp = AddItemProp;

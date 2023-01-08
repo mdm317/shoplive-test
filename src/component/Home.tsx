@@ -1,13 +1,16 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { useItemsStore } from '../store/ItemStore';
 import { getDateFormat } from '../util/getDateFormat';
 import { useForm } from 'react-hook-form';
 import { AddItemProp } from '../types';
 import { itemInputKey } from '../const/itemInputKey';
+import EditForm from './EditForm';
 
 function Home() {
   const { items, init, addItem, deleteItem } = useItemsStore(state => state);
   const { register, handleSubmit } = useForm<AddItemProp>();
+  const [visibleEdit, setVisibleEdit] = useState(false);
+  const [editIndex, setEditIndex] = useState<number>(-1);
   useLayoutEffect(() => {
     init();
   }, [init]);
@@ -17,8 +20,14 @@ function Home() {
   const handleDelete = (deleteId: number) => {
     deleteItem(deleteId);
   };
+  const handleEdit = (editId: number) => {
+    setVisibleEdit(true);
+    setEditIndex(editId);
+  };
+
   return (
     <>
+      <EditForm visible={visibleEdit} setVisible={setVisibleEdit} id={editIndex} />
       <header>
         <div className="head-text">SHOPLIVE</div>
       </header>
@@ -47,7 +56,7 @@ function Home() {
               <div className="date">{getDateFormat(item.createdAt)}</div>
             </div>
             <div className="buttons">
-              <button>수정</button>
+              <button onClick={() => handleEdit(item.id)}>수정</button>
               <button onClick={() => handleDelete(item.id)}>제거</button>
             </div>
           </div>
