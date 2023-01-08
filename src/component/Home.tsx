@@ -14,6 +14,9 @@ function Home() {
   const onSubmit = (data: AddItemProp) => {
     addItem(data);
   };
+  const handleDelete = (deleteId: number) => {
+    deleteItem(deleteId);
+  };
   return (
     <>
       <header>
@@ -45,7 +48,7 @@ function Home() {
             </div>
             <div className="buttons">
               <button>수정</button>
-              <button>제거</button>
+              <button onClick={() => handleDelete(item.id)}>제거</button>
             </div>
           </div>
         ))}

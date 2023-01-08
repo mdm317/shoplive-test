@@ -6,7 +6,7 @@ interface ItemsState {
   items: Item[];
   init: () => void;
   addItem: (prop: AddItemProp) => void;
-  deleteItem: (id: string) => void;
+  deleteItem: (id: number) => void;
 }
 
 export const useItemsStore = create<ItemsState>()(set => ({
@@ -41,7 +41,7 @@ export const useItemsStore = create<ItemsState>()(set => ({
     }),
   deleteItem: deleteId =>
     set(state => {
-      const idx = state.items.findIndex(({ id }) => id === Number(deleteId));
+      const idx = state.items.findIndex(({ id }) => id === deleteId);
       if (idx !== -1) {
         const newItems = [...state.items];
         newItems.splice(idx, 1);
