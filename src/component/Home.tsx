@@ -5,9 +5,12 @@ import { useForm } from 'react-hook-form';
 import { AddItemProp } from '../types';
 import { itemInputKey } from '../const/itemInputKey';
 import EditForm from './EditForm';
+import { useSearchKeyword } from '../hooks/useSearchKeyword';
+import { useSearchedItems } from '../hooks/useItemsSearch';
 
 function Home() {
   const { items, init, addItem, deleteItem } = useItemsStore(state => state);
+  const { value: keywordValue, setValue: setKeywordValue, handleSearch, resetKeyword } = useSearchKeyword();
   const { register, handleSubmit } = useForm<AddItemProp>();
   const [visibleEdit, setVisibleEdit] = useState(false);
   const [editIndex, setEditIndex] = useState<number>(-1);
@@ -32,8 +35,9 @@ function Home() {
         <div className="head-text">SHOPLIVE</div>
       </header>
       <div className="row">
-        <input placeholder="검색" />
-        <button>검색</button>
+        <input value={keywordValue} onChange={e => setKeywordValue(e.target.value)} placeholder="검색" />
+        <button onClick={handleSearch}> 검색</button>
+        <button onClick={resetKeyword}>취소</button>
       </div>
       <div className="row">
         <form onSubmit={handleSubmit(onSubmit)}>
