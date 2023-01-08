@@ -3,8 +3,8 @@ import { useItemsStore } from '../store/ItemStore';
 import { getDateFormat } from '../util/getDateFormat';
 import { useForm } from 'react-hook-form';
 import { AddItemProp } from '../types';
+import { itemInputKey } from '../const/itemInputKey';
 
-const inputType = ['title', 'likeCount', 'imageUrl'] as const;
 function Home() {
   const { items, init, addItem, deleteItem } = useItemsStore(state => state);
   const { register, handleSubmit } = useForm<AddItemProp>();
@@ -28,7 +28,7 @@ function Home() {
       </div>
       <div className="row">
         <form onSubmit={handleSubmit(onSubmit)}>
-          {inputType.map(key => (
+          {itemInputKey.map(key => (
             <input key={key} placeholder={key} {...register(key)} />
           ))}
           <button>추가</button>
