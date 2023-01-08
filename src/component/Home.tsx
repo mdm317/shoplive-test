@@ -1,7 +1,19 @@
-import { DUMMY } from '../dummies';
+import { useLayoutEffect } from 'react';
+import { useItemsStore } from '../store/ItemStore';
 import { getDateFormat } from '../util/getDateFormat';
+import { useForm } from 'react-hook-form';
+import { AddItemProp } from '../types';
 
+const inputType = ['title', 'likeCount', 'imageUrl'] as const;
 function Home() {
+  const { items, init, addItem, deleteItem } = useItemsStore(state => state);
+  const { register, handleSubmit } = useForm<AddItemProp>();
+  useLayoutEffect(() => {
+    init();
+  }, [init]);
+  const onSubmit = (data: AddItemProp) => {
+    addItem(data);
+  };
   return (
     <>
       <header>
@@ -12,16 +24,18 @@ function Home() {
         <button>검색</button>
       </div>
       <div className="row">
-        <input placeholder="title" />
-        <input placeholder="likeCount" />
-        <input placeholder="imageUrl" />
-        <button>추가</button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {inputType.map(key => (
+            <input key={key} placeholder={key} {...register(key)} />
+          ))}
+          <button>추가</button>
+        </form>
       </div>
 
       <div className="row">아이템 - 총 5 개</div>
 
       <div className="wrap-items row">
-        {DUMMY.map(item => (
+        {items.map(item => (
           <div key={item.id} className="item-row">
             <img className="thumb" src={item.imageUrl} />
             <div className="text-box">
