@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable prettier/prettier */
 import './description.scss'
 const Goal = () => {
   return <div className="wrap-description">

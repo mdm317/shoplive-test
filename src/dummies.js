@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 export const DUMMY = [
   {
     id: 1637316103000,
