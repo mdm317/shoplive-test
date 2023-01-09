@@ -1,6 +1,5 @@
 import './styles/App.scss';
 
-import DescriptionComponent from './DescriptionComponent';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './component/Home';
 
@@ -10,7 +9,6 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/p" element={<DescriptionComponent />} />
         </Routes>
       </BrowserRouter>
     </div>
