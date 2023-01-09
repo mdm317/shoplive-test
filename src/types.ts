@@ -4,6 +4,7 @@ export type Item = {
   createdAt: number;
   likeCount: number;
   imageUrl: string;
+  splitTitle?: string[];
 };
 
 export type AddItemProp = {

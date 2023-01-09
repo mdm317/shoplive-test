@@ -53,7 +53,10 @@ body {
     display:flex;
     overflow: hidden;
     flex-direction: column-reverse;
-
+    .highlight{
+      background-color: yellow;
+      color: red;
+    }
 
     @include mobile{
       width:80%;

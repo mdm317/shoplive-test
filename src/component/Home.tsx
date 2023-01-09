@@ -7,6 +7,7 @@ import { itemInputKey } from '../const/itemInputKey';
 import EditForm from './EditForm';
 import { useSearchKeyword } from '../hooks/useSearchKeyword';
 import { useSearchedItems } from '../hooks/useItemsSearch';
+import HighlightText from './HighlightText';
 
 function Home() {
   const { init, addItem, deleteItem } = useItemsStore(state => state);
@@ -58,7 +59,13 @@ function Home() {
             <img className="thumb" src={item.imageUrl} />
             <div className="text-box">
               <div className="like">LIKE : {item.likeCount}</div>
-              <div className="title">{item.title}</div>
+              {item.splitTitle !== undefined && keyword ? (
+                <div className="title">
+                  <HighlightText hightLightText={keyword} texts={item.splitTitle} />
+                </div>
+              ) : (
+                <div className="title">{item.title}</div>
+              )}
               <div className="date">{getDateFormat(item.createdAt)}</div>
             </div>
             <div className="buttons">
