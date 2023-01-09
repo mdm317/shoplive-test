@@ -9,8 +9,10 @@ import { useSearchKeyword } from '../hooks/useSearchKeyword';
 import { useSearchedItems } from '../hooks/useItemsSearch';
 
 function Home() {
-  const { items, init, addItem, deleteItem } = useItemsStore(state => state);
-  const { value: keywordValue, setValue: setKeywordValue, handleSearch, resetKeyword } = useSearchKeyword();
+  const { init, addItem, deleteItem } = useItemsStore(state => state);
+  const { keyword, value: keywordValue, setValue: setKeywordValue, handleSearch, resetKeyword } = useSearchKeyword();
+  const items = useSearchedItems(keyword);
+
   const { register, handleSubmit } = useForm<AddItemProp>();
   const [visibleEdit, setVisibleEdit] = useState(false);
   const [editIndex, setEditIndex] = useState<number>(-1);
